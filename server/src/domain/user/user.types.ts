@@ -7,7 +7,8 @@ export interface IUser {
   getRole(): role
   setPassword(oldPlainPassword: string, newPlainPassword: string): boolean
   isCorrectPassword(plainPassword: string): boolean
-  toExternalUse(): Object
+  toExternalUse(): IUser
+  serialize(): Object
 }
 
 export interface IUserData {

@@ -19,7 +19,7 @@ export default function addUserRoute(router) {
       if (validUser == undefined) {
         throw new Error("Invalid credentials. Please try again.")
       }
-      const token = await generateJWToken(validUser.toExternalUse())
+      const token = await generateJWToken(validUser.serialize())
       res.status(200).send(token)
     } catch (e) {
       console.log(e)

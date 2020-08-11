@@ -71,5 +71,14 @@ export function buildMakeUser({ hashFunction, Id }: { hashFunction: IHashFunctio
       delete this.hashedPassword
       return this
     }
+    serialize() {
+      return {
+        id:  this.id,
+        name:  this.name,
+        username:  this.username,
+        email:  this.email,
+        role:  this.role,
+      }
+    }
   }
 }
