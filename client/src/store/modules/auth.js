@@ -46,14 +46,18 @@ const auth = {
         try {
           const { data: { user } } = await API.auth.checkAuth()
           commit('setCurrentUser', user);
-        } catch {
-          this.dispatch("pushRouter", { name: "Login" })
-          window.localStorage.setItem('jwt-token', "");
-          Message({ 
-            message: `Your login session is invalid. Please login and retry.`,
-            type: 'warning',
-            showClose: true,
-          })
+        } catch (e) {
+          if (e.response.status == 401 && e.response.data.includes("Login session expired")) {
+            window.localStorage.clear();
+            this.dispatch("pushRouter", { name: "Login" })
+            Message({ 
+              message: `Your login session is invalid. Please login and retry.`,
+              type: 'warning',
+              showClose: true,
+            })
+            return
+          }
+          console.log(e)
         }
       }
     },

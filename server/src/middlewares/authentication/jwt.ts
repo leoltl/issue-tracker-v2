@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from "express";
+import { HTTP401Error } from "../../lib/httpErrors";
 import jwt from 'jsonwebtoken';
 
 // const SECRET = process.env.JWT_SECRET
@@ -26,6 +27,9 @@ export function extractUserFromHeader(req: Request, res: Response, next: NextFun
     req.user = { username, name, email, role, id };
     next()
   } catch (e) {
+    if (e.message.includes("jwt expired")) {
+      throw new HTTP401Error("Login session expired. Please re-login.");
+    }
     req.user = null;
     next()
   }
@@ -35,7 +39,7 @@ function authenticate(req: Request, res: Response, next: NextFunction) {
   if (req.user != null) {
     next()
   } else {
-    throw new Error ("Authentication failed for this protected route. Please Login and retry.")
+    throw new HTTP401Error("Authentication failed for this protected route. Please Login and retry.")
   }
 }
 

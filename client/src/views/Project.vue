@@ -34,7 +34,7 @@ import ModalBus from '@/Bus';
 import { createNamespacedHelpers } from 'vuex';
 import { displayDate } from '@/filters';
 
-const { mapState: mapIssueState } = createNamespacedHelpers('issue');
+const { mapGetters: mapIssueGetters } = createNamespacedHelpers('issue');
 const { mapState: mapProjectState, mapGetters: mapProjectGetters } = createNamespacedHelpers('project')
 
 const ISSUES_COLUMNS = [
@@ -58,7 +58,7 @@ export default {
     ...mapProjectState([
       'currentProjectID',
     ]),
-    ...mapIssueState([
+    ...mapIssueGetters([
       'issues',
     ]),
     ...mapProjectGetters([
@@ -99,14 +99,12 @@ export default {
   created() {
     try {
       if(this.$route.params.projectId && this.currentProjectID == "") {
-        this.$store.dispatch('project/getAllProjects', { next:
-        () => this.$store.dispatch("project/setCurrentProject", this.$route.params.projectId)})
+        this.$store.dispatch("pushRouter", { name: "Projects" })
       }
     } catch (e) {
       console.log(e)
     }
   },
-    
   beforeDestroy() {
     // this.$store.dispatch('project/setCurrentProject', '');
   }

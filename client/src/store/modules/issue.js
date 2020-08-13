@@ -18,6 +18,9 @@ const issue = {
       data.assignedId = state.currentIssue.assignedTo?.id || ""
       return data;
     },
+    issues(state) {
+      return state.issues || [];
+    },
     myIssues(state) {
       return state.myIssues
     }

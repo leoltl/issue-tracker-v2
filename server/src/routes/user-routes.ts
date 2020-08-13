@@ -26,4 +26,12 @@ export default function addUserRoute(router) {
       res.send("not ok")
     }
   })
+
+  router.get("/me", (req, res) => {
+    if (req.user) {
+      res.json({ user: req.user })
+    } else {
+      res.json({ user: null })
+    }
+  })
 };

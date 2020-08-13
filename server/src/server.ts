@@ -22,9 +22,8 @@ app.use(extractUserFromHeader);
 import addRoutes from "./routes";
 app.use(addRoutes(express.Router()));
 
-app.get("/", (req, res) => {
-  res.send("The sedulous hyena ate the antelope!");
-});
+import addErrorHandler from './middlewares/error-handler';
+addErrorHandler(app);
 
 app.listen(port, err => {
   if (err) {

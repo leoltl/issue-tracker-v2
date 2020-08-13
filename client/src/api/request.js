@@ -20,7 +20,6 @@ instance.interceptors.response.use((response) => {
   console.log('Response was received from', response.config.url)
   return response;
 }, error => {
-  console.log(error);
   return Promise.reject(error);
 });
 

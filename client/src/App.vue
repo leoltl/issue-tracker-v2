@@ -15,7 +15,7 @@ export default {
     this.$store.dispatch('auth/loadToken')
   },
   async mounted() {
-    // await this.$store.dispatch('auth/checkAuth')
+    await this.$store.dispatch('auth/checkAuth')
   }
 }
 </script>
