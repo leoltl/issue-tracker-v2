@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-// const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 export const UserSchema = new Schema({
@@ -25,9 +24,3 @@ export const ProjectSchema = new Schema({
   issues: [{ type: Schema.Types.ObjectId, ref: "Issue" }],
   members: [{ type: Schema.Types.ObjectId, ref: "User" }],
 });
-
-// module.exports = {
-//   UserSchema,
-//   IssueSchema,
-//   ProjectSchema,
-// }

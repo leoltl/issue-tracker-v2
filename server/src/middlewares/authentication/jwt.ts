@@ -2,8 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { HTTP401Error } from "../../lib/httpErrors";
 import jwt from 'jsonwebtoken';
 
-// const SECRET = process.env.JWT_SECRET
-const SECRET = "HAHAHA"
+const SECRET = process.env.JWT_SECRET || "HAHAHA"
 
 declare global {
   namespace Express {
