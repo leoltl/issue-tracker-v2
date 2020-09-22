@@ -15,6 +15,8 @@ Rewrote v2 to follow principles layout in Clean Architecture. Learn to encapsula
 
 ## Live App
 **View it on [here](https://leoltl-issue-tracker.herokuapp.com)**
+*The App is hosted on Heroku, it might take some to spin up the deno*
+
 
 You can create your own account or login in with one of the following accounts:
 
